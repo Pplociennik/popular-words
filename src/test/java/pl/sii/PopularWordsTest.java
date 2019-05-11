@@ -1,12 +1,12 @@
 package pl.sii;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -36,7 +36,7 @@ public class PopularWordsTest {
 
         result.forEach((key, value) -> {
             BigDecimal valueUsagePercentage = calculatePercentage(value, totalFrequencyInAResult);
-            BigDecimal kilgarriffUsagePercentage = calculatePercentage(wordsFrequencyListCreatedByAdamKilgarriff.get(key), totalFrequencyByKilgarriff);
+            BigDecimal kilgarriffUsagePercentage = wordsFrequencyListCreatedByAdamKilgarriff.get(key) == null ? BigDecimal.ZERO : calculatePercentage(wordsFrequencyListCreatedByAdamKilgarriff.get(key), totalFrequencyByKilgarriff);
             BigDecimal diff = kilgarriffUsagePercentage.subtract(valueUsagePercentage);
             System.out.println(key + "," + valueUsagePercentage + "%," + kilgarriffUsagePercentage + "%," + (new BigDecimal(0.5).compareTo(diff.abs()) > 0) + " " + diff);
         });
@@ -46,7 +46,15 @@ public class PopularWordsTest {
         return new BigDecimal(obtained * 100 / total).setScale(4, RoundingMode.HALF_UP);
     }
 
-    private Map<String, Long> getWordsFrequencyListCreatedByAdamKilgarriff() {
-        throw new NotImplementedException("TODO implementation");
+    private Map<String, Long> getWordsFrequencyListCreatedByAdamKilgarriff() throws FileNotFoundException {
+        Map<String, Long> kilgarriffsList = new LinkedHashMap<>();
+        Scanner file = new Scanner(new File(".\\src\\test\\resources\\all.num"));
+        while (file.hasNext()) {
+            String word = file.nextLine();
+            String[] parts = word.split(" ");
+            kilgarriffsList.put(parts[1], Long.valueOf(parts[0]));
+        }
+        //throw new NotImplementedException("TODO implementation");
+        return kilgarriffsList;
     }
 }
