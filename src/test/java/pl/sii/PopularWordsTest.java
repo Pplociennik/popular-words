@@ -3,6 +3,7 @@ package pl.sii;
 import org.apache.commons.lang3.NotImplementedException;
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Map;
@@ -14,7 +15,7 @@ public class PopularWordsTest {
     private static final PopularWords testee = new PopularWords();
 
     @Test
-    public void shouldReturnOneThousandMostPopularWords() {
+    public void shouldReturnOneThousandMostPopularWords() throws FileNotFoundException {
         //given
         Map<String, Long> wordsFrequencyListCreatedByAdamKilgarriff = getWordsFrequencyListCreatedByAdamKilgarriff();
 
