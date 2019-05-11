@@ -6,7 +6,7 @@
 
   <groupId>pl.sii</groupId>
   <artifactId>popular-words</artifactId>
-  <version>1.1_01-SNAPSHOT</version>
+  <version>1.2-SNAPSHOT</version>
 
   <name>popular-words</name>
   <url>http://sii.pl/</url>

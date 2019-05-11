@@ -1,6 +1,7 @@
 package pl.sii;
 
 import org.junit.Test;
+import pl.sii.transformation.ValueComparator;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

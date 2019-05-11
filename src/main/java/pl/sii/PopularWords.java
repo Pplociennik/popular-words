@@ -2,12 +2,14 @@ package pl.sii;
 
 import org.apache.commons.lang3.NotImplementedException;
 import pl.sii.transformation.MapDivider;
+import pl.sii.transformation.ValueComparator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class PopularWords {
 
@@ -34,8 +36,10 @@ public class PopularWords {
 
     Map<String, Long> findOneThousandMostPopularWords() throws FileNotFoundException {
         Map<String, Long> words = new HashMap<>();
+        Map<String, Long> result = new TreeMap<>(new ValueComparator(words));
         getWords(words);
+        result.putAll(words);
 
-        return MapDivider.getSubMap(words, 0, 1000);
+        return MapDivider.getSubMap(result, 0, 1000);
     }
 }
