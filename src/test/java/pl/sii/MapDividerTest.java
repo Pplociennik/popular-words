@@ -1,6 +1,7 @@
 package pl.sii;
 
 import org.junit.Test;
+import pl.sii.transformation.MapDivider;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
