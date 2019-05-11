@@ -1,6 +1,7 @@
 package pl.sii;
 
 import org.apache.commons.lang3.NotImplementedException;
+import pl.sii.transformation.MapDivider;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,6 +36,6 @@ public class PopularWords {
         Map<String, Long> words = new HashMap<>();
         getWords(words);
 
-        return words;
+        return MapDivider.getSubMap(words, 0, 1000);
     }
 }
