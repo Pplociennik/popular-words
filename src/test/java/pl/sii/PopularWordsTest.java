@@ -10,6 +10,7 @@ import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static pl.sii.FilesPaths.KILGARRIFFS_FILE_PATH;
 
 public class PopularWordsTest {
     private static final PopularWords testee = new PopularWords();
@@ -48,7 +49,7 @@ public class PopularWordsTest {
 
     private Map<String, Long> getWordsFrequencyListCreatedByAdamKilgarriff() throws FileNotFoundException {
         Map<String, Long> kilgarriffsList = new LinkedHashMap<>();
-        Scanner file = new Scanner(new File(".\\src\\test\\resources\\all.num"));
+        Scanner file = new Scanner(new File(KILGARRIFFS_FILE_PATH));
         while (file.hasNext()) {
             String word = file.nextLine();
             String[] parts = word.split(" ");

@@ -1,8 +1,7 @@
 package pl.sii;
 
-import org.apache.commons.lang3.NotImplementedException;
 import pl.sii.transformation.MapDivider;
-import pl.sii.transformation.ValueComparator;
+import pl.sii.transformation.ValueDescComparator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
+
+import static pl.sii.FilesPaths.ENTRY_FILE_PATH;
 
 public class PopularWords {
 
@@ -19,25 +20,26 @@ public class PopularWords {
         result.entrySet().forEach(System.out::println);
     }
 
-    private static void getWords(Map<String, Long> words) throws FileNotFoundException {
-        Scanner file = new Scanner(new File(".\\src\\main\\resources\\3esl.txt"));
+    private static void getFullWordsToMap(Map<String, Long> words, String filePath) throws FileNotFoundException {
+        Scanner file = new Scanner(new File(filePath));
         while (file.hasNext()) {
-            String word = file.next().toLowerCase();
-            Long count = words.get(word);
+            String primaryWord = file.next().toLowerCase();
+            Long count = words.get(primaryWord);
             if (count != null)
                 count++;
             else
                 count = 1L;
 
-            words.put(word, count);
+            words.put(primaryWord, count);
         }
         file.close();
     }
 
     Map<String, Long> findOneThousandMostPopularWords() throws FileNotFoundException {
         Map<String, Long> words = new HashMap<>();
-        Map<String, Long> result = new TreeMap<>(new ValueComparator(words));
-        getWords(words);
+        Map<String, Long> result = new TreeMap<>(new ValueDescComparator(words));
+
+        getFullWordsToMap(words, ENTRY_FILE_PATH);
         result.putAll(words);
 
         return MapDivider.getSubMap(result, 0, 1000);
