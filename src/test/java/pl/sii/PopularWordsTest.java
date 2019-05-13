@@ -55,7 +55,6 @@ public class PopularWordsTest {
             String[] parts = word.split(" ");
             kilgarriffsList.put(parts[1], Long.valueOf(parts[0]));
         }
-        //throw new NotImplementedException("TODO implementation");
         return kilgarriffsList;
     }
 
