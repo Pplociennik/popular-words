@@ -58,4 +58,10 @@ public class PopularWordsTest {
         //throw new NotImplementedException("TODO implementation");
         return kilgarriffsList;
     }
+
+    @Test(expected = FileNotFoundException.class)
+    public void shouldThrowFileNotFoundException() throws FileNotFoundException {
+        Map<String, Long> testData = new HashMap<>();
+        testee.getFullWordsToMap(testData, ".\\src");
+    }
 }

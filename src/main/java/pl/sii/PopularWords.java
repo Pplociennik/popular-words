@@ -20,7 +20,7 @@ public class PopularWords {
         result.entrySet().forEach(System.out::println);
     }
 
-    private static void getFullWordsToMap(Map<String, Long> words, String filePath) throws FileNotFoundException {
+    void getFullWordsToMap(Map<String, Long> words, String filePath) throws FileNotFoundException {
         Scanner file = new Scanner(new File(filePath));
         while (file.hasNext()) {
             String primaryWord = file.next().toLowerCase();
